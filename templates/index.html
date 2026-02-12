@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Addition</title>
+</head>
+<body>
+    <h1>Addition</h1>
+    <form method="POST"> 
+        <!-- A form is how frontent sends data to backend -->
+         <!--when it get submitted send data to server -->
+         <!-- GET = used to requesting data 
+              POST = used to sending data -->
+        <input type ="number" name="A" placeholder="Enter A"> 
+        <input type="number" name = "B" placeholder="Enter B">
+        <!-- Browser send form data to server and by default it sends to the same URL -->
+        <button type = "submit">ADD</button> 
+
+       
+    </form>
+
+     {% if result is not none %}
+        <h3>Result = {{result}}</h3>
+     {% endif %}
+</bod
+</html>
+
