@@ -72,35 +72,91 @@
 
 # --------------------------------------------------------------------------------
 #Adding database =>
+# (FINAL ONE FOR ADDITION OF TWO NUMBERS)
 
-from flask import Flask , render_template , request 
+# from flask import Flask , render_template , request 
+# import sqlite3
+
+# app = Flask(__name__)
+
+# @app.route("/" , methods=["GET","POST"])
+# def home():
+#     result = None
+#     if request.method == "POST":
+#         A = int(request.form["A"])
+#         B = int(request.form["B"])
+#         result = A + B
+
+#         conn = sqlite3.connect("data.db") #checks if the data.db exist if no then it creates it and here conn= connection(joins code and database)
+#         cursor = conn.cursor() # use cursor to write SQL query , sends commands to database and reads results
+
+#         cursor.execute("CREATE TABLE IF NOT EXISTS records(A REAL , B REAL result REAL)") #it creates a table 
+#         cursor.execute("INSERT INTO records VALUES(? , ? , ?)" , (A,B,result)) # here (A , B , result) is a tuple and ? is a placeholder
+
+#         conn.commit() #it saves data
+#         conn.close() # it closes the connection
+    
+#     return render_template("index.html" , result = result)
+
+# if __name__ == "__main__":
+#     app.run(debug = True)
+
+
+# --------------------------------------------------------------------------------------------------------------
+
+# Now adding substraction , multi , and division
+# (MINI CALCULATOR)
+
+from flask import Flask , render_template , request
 import sqlite3
 
 app = Flask(__name__)
 
-@app.route("/" , methods=["GET","POST"])
+@app.route("/" , methods=["GET" , "POST"])
 def home():
     result = None
+
     if request.method == "POST":
         A = int(request.form["A"])
         B = int(request.form["B"])
-        result = A + B
+        selected_operations = request.form.get("operations")
 
-        conn = sqlite3.connect("data.db") #checks if the data.db exist if no then it creates it and here conn= connection(joins code and database)
-        cursor = conn.cursor() # use cursor to write SQL query , sends commands to database and reads results
+    #  operations = request.form.get("operations")
+    #     if operations == "add":
+    #         result = A + B
 
-        cursor.execute("CREATE TABLE IF NOT EXISTS records(A REAL , B REAL result REAL)") #it creates a table 
-        cursor.execute("INSERT INTO records VALUES(? , ? , ?)" , (A,B,result)) # here (A , B , result) is a tuple and ? is a placeholder
+    #     elif operations == "sub":
+    #         result = A - B
 
-        conn.commit() #it saves data
-        conn.close() # it closes the connection
-    
+    #     elif operations == "mul":
+    #         result = A*B
+
+    #     elif operations == "div":
+    #         if B != 0:
+    #             result = A/B
+    #         else: 
+    #             result = "Cannot divide by zero"
+
+        operations_map = {
+            "add" : A + B,
+            "sub" : A - B,
+            "mul" : A * B,
+            "div" : A / B if B != 0 else "Cannot divide by zero"
+        }
+        result = operations_map.get(selected_operations)
+
+
+        conn = sqlite3.connect("data.db")
+        cursor = conn.cursor()
+
+        cursor.execute("CREATE TABLE IF NOT EXISTS records2(A REAL , B REAL , selected_operations TEXT ,result REAL)")
+        cursor.execute("INSERT INTO records2 VALUES(? , ? ,  ? , ?)" , (A , B ,selected_operations , result))
+
+        conn.commit()
+        conn.close()
+
     return render_template("index.html" , result = result)
 
 if __name__ == "__main__":
-    app.run(debug = True)
-
-
-
-
+    app.run(debug=True)
 

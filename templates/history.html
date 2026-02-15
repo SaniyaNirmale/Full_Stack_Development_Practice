@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini calculator with history</title>
+<!-- Here I used jinja , its is a template engine that let us mix python logic inside html -->
+ <!-- template engine means it is a blueprint , and flask fills it with real data -->
+  <!-- same template -> different data -> different output -->
+ <!-- {{ something }} and {% something %} jinja syntax-->
+</head>
+<body>
+    <h1>Calculation history</h1>
+    <table border="1">
+        <!-- tr is table row -->
+        <tr> 
+            <!-- th is table header -->
+            <th>ID</th>
+            <th>A</th>
+            <th>B</th>
+            <th>operations</th>
+            <th>result</th>
+
+        </tr>
+        <!-- this is loop through records2 -->
+
+        {% for row in records2 %}
+        <tr>
+            <!-- <h3>{{ result }}</h3> means it take variable result from flask and print it here-->
+             <!-- td istable data -->
+            <td>{{row[0]}}</td> 
+            <td>{{row[1]}}</td>
+            <td>{{row[2]}}</td>
+            <td>{{row[3]}}</td>
+            <td>{{row[4]}}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

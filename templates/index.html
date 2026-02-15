@@ -12,15 +12,25 @@
               POST = used to sending data -->
         <input type ="number" name="A" placeholder="Enter A"> 
         <input type="number" name = "B" placeholder="Enter B">
+        <select name="operations">
+
+            <option value = "add">Addition</option>
+            <option value = "sub">Substraction</option>
+            <option value = "mul">Multiplication</option>
+            <option value = "div" >Division</option>
+
+        </select>
         <!-- Browser send form data to server and by default it sends to the same URL -->
-        <button type = "submit">ADD</button> 
+        <button type = "submit">Calculate</button> 
 
        
     </form>
+    <br>
+    <a href = "/history">View History</a>
 
      {% if result is not none %}
         <h3>Result = {{result}}</h3>
      {% endif %}
-</bod
+</body>
 </html>
 
