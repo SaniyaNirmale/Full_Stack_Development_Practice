@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Edit claculations</h1>
+
+    <!-- A form collects user input and send it to server , without a form browser cannot send data  -->
+    <form method="POST" action="{{ url_for('update', id=records1[0]) }}"
+>
+        <input type = "number" name="A" value="{{records1[1]}}" required>
+        <input type = "number" name="B" value="{{records1[2]}}" required>
+
+        <select name="operations">
+            <option value = "+" {% if records1[3] == '+' %} selected{% endif %}>+</option>
+            <option value = "-" {% if records1[3] == '-' %} selected{% endif %}>-</option>
+            <option value = "*" {% if records1[3] == '*' %} selected{% endif %}>*</option>
+            <option value = "/" {% if records1[3] == '/' %} selected{% endif %}>/</option>
+
+        </select>
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
